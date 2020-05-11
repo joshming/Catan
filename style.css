@@ -1,0 +1,124 @@
+@font-face {
+    src: url(Fonts/Satisfy-Regular.ttf);
+    font-family: Satisfy;
+}
+
+@font-face {
+    src: url(Fonts/RoughStormsBold.ttf);
+    font-family: Rough;
+}
+
+.fade-in {
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+
+
+/* fade in transtion code ends */
+.fullscreen-vid {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+.Title{
+    text-align: center;
+    padding-top: 200px;
+    line-height: 75px;
+    padding-bottom: 100px;
+}
+
+h1 {
+    font-family: Satisfy;
+    color: orangered; 
+    font-size: 100px;
+    margin: 0px;
+    font-weight: 700;
+}
+p {
+    font-family: Satisfy;
+    color: orange;
+    font-size: 30px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 500px;
+    background-color: rgb(255, 180, 109, 0.2);
+    padding: 50px
+}
+
+
+nav {
+    text-align: center;
+    animation: fade-in;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    display: block; 
+    text-decoration: none;
+    color: #1e1e1e;
+    padding: 0 20px;
+    font-weight: 100;
+    font-size: 35px;
+    font-family: Rough;
+}
+
+ul li a:hover {
+    font-size: 200%;
+}

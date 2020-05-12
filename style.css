@@ -7,118 +7,304 @@
     src: url(Fonts/RoughStormsBold.ttf);
     font-family: Rough;
 }
+@font-face{
+  src: url(Fonts/Raleway-Regular.ttf);
+  font-family: Raleway;
+}
 
 .fade-in {
-    animation: fadeIn ease 5s;
-    -webkit-animation: fadeIn ease 5s;
-    -moz-animation: fadeIn ease 5s;
-    -o-animation: fadeIn ease 5s;
-    -ms-animation: fadeIn ease 5s;
+  animation: fadeIn ease 1.25s;
+  -webkit-animation: fadeIn ease 1.25s;
+  -moz-animation: fadeIn ease 1.25s;
+  -o-animation: fadeIn ease 1.25s;
+  -ms-animation: fadeIn ease 1.25s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
   }
-  @keyframes fadeIn {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
+  100% {
+    opacity:1;
   }
-  
-  @-moz-keyframes fadeIn {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {
-      opacity:0;
-    }
-    100% {
-      opacity:1;
-    }
-  }
-
-
-/* fade in transtion code ends */
-.fullscreen-vid {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-  }
-
-.Title{
-    text-align: center;
-    padding-top: 200px;
-    line-height: 75px;
-    padding-bottom: 100px;
 }
 
-h1 {
-    font-family: Satisfy;
-    color: orangered; 
-    font-size: 100px;
-    margin: 0px;
-    font-weight: 700;
-}
-p {
-    font-family: Satisfy;
-    color: orange;
-    font-size: 30px;
-    margin: 0px;
-    margin-bottom: 5px;
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
-.wrapper {
-    margin: 0 auto;
-    width: 500px;
-    background-color: rgb(255, 180, 109, 0.2);
-    padding: 50px
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
-
-nav {
-    text-align: center;
-    animation: fade-in;
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
-ul li {
-    display: inline-block;
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}/* fade in transtion code ends */
+
+* {
+  box-sizing: border-box;
 }
 
-ul li a {
-    display: block; 
-    text-decoration: none;
-    color: #1e1e1e;
-    padding: 0 20px;
-    font-weight: 100;
-    font-size: 35px;
-    font-family: Rough;
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  filter: blur(4.25px);
 }
 
-ul li a:hover {
-    font-size: 200%;
+body {
+  background: black; /* change to black later */
+  opacity: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+
+.overlay-panel h1 {
+  font-family: Satisfy;
+  font-weight: bold;
+  margin:0;
+  font-size: 60px;
+  color: orangered;
+}
+
+.overlay-panel p {
+  font-family: Satisfy;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 10px 0px 30px;
+  color: rgb(255, 157, 0);
+}
+
+.container { 
+  background: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(255, 222, 50, 0.35);
+  position: relative; 
+  overflow: hidden;
+  width: 830px;
+  max-width: 100%;
+  min-height: 560px;
+  backdrop-filter: blur(20px);
+}
+
+.Join-Game-container form{
+  background: #fff;
+  display: flex;
+  align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+.Join-Game-container input { 
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+#joingame {
+  padding: 10px;
+  font-family: Raleway;
+}
+
+.Join-Game-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.New-Game-container { 
+  left: 0; 
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  justify-content: center;
+  text-align: center;
+}
+
+.New-Game-container form{ 
+  background: #fff;
+  display: flex;
+  align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	height: 100%;
+	text-align: center;
+}
+
+.New-Game-container input{
+  background: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+#CreateGame {
+  padding: 10px;
+  font-family: Raleway;
+}
+
+.home-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+button.inform {
+  border: 1px solid #FFDD9E;
+  border-radius: 30px;
+  background: #FFDD9E;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  transition: transfrom 60ms ease-in;
+}
+
+.overlay-panel button {
+  border: 1px solid #FFDD9E;
+  border-radius: 30px;
+  padding: 20px 50px;
+  background: #FFDD9E;
+  letter-spacing: 1px;
+  transition: transfrom 60ms ease-in;
+  display: block;
+  margin: 10px;
+}
+
+.home-container-overlay { 
+  background: rgba(255, 255, 255, 0.5);
+  height: 100%;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel { 
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px; 
+  height: 100%;
+  text-align: center;
+  width: 50%;
+  transform: translateX(0); 
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-right { 
+  right: 0;
+  transform: translateX(0); 
+}
+
+.overlay-left { 
+  transform: translateX(-20%);
+}
+
+button.ghost {
+  border: 1px solid #FFDD9E;
+  border-radius: 30px;
+  padding: 20px 50px;
+  background: #FFDD9E;
+  letter-spacing: 1px;
+  transition: transfrom 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus{
+  outline: none;
+}
+
+/* Animations */
+
+/* Move join game form to the right */
+
+.container.right-active .Join-Game-container{ 
+  transform: translateX(100%);
+}
+
+/*Move overlay to the left  */
+
+.container.right-active .home-container { 
+  transform: translateX(-100%);
+}
+
+/* bring new game above and left overlay*/
+
+.container.right-active .New-Game-container { 
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Move overlay to right  */
+
+.container.right-active .home-container-overlay{
+  transform: translateX(50%);
+}
+
+.container.right-active .overlay-left{ 
+  transform: translateX(0);
+}
+
+.container.right-active .overlay-right { 
+  transform: translateX(20%);
 }

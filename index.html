@@ -8,25 +8,39 @@
         <script src="script.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
-        <!-- <header class="v-header container">
-            <div class="fullscreen-vid">
-                <video src="CatanTrailer.mp4" autoplay muted loop></video>
+    <body class="fade-in">
+        <video src="videos/wayne.mp4" autoplay muted loop id="myVideo"></video>
+        <div class="container" id="container">
+            <div class="home-container"> 
+                <div class="home-container-overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>CATAN</h1>
+                        <p>Trade, Build, Settle</p>
+                        <button class="buttons" id="joinGame" onclick="showjoinform()"> Join Game</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>CATAN</h1>
+                        <p>Trade, Build, Settle</p>
+                        <button class="buttons" id="newGame" onclick="shownewgame()"> New Game</button>
+                    </div>
+                </div>
             </div>
-        </header> -->
-        
-        <div class="Title fade-in">
-            <h1>CATAN</h1>
-            <p>Trade, Build, Settle</p>
+            <div class="Join-Game-container" id='join'>
+                <form onsubmit="completeAndRedirect(); return false;" class="join-form" id="join-form">
+                    <h1 id="joingame">Join Game</h1>
+                    <input type="Name" placeholder="Game ID">
+                    <input type="Password" placeholder="Password">
+                    <button class="inform">Join</button>
+                </form>
+            </div>
+            <div class="New-Game-container">
+                <form action="#" class="new-game-form">
+                    <h1 id="CreateGame">New Game</h1>
+                    <input type="Name" placeholder="Game ID">
+                    <input type="Password" placeholder="Password">
+                    <button class="inform">Create Game</button>
+                </form>
+            </div>
         </div>
-        <div class="fade-in">
-            <nav class="wrapper">
-                <ul>
-                    <li><a href="join_game.html">Join Game</a></li>
-                    <li><a href="new_game.html">New Game</a></li>
-                </ul>
-            </nav>
-        </div>
-        
     </body>    
 </html>

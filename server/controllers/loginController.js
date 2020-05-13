@@ -10,19 +10,19 @@ module.exports = function(io, controller){
             isValid: !controller.getGame(data.gameID)
           }
           io.to(socket.id).emit('isValidGameID', res);
-      
+          console.log(controller.games);
         });
       
         socket.on('createGame', (data) => {
           //this socket requested to create a game
           //data = {gameID: str, password: str}
           var game = controller.createGame(data.gameID, data.password);
-      
+          console.log(game);
           if(game){
             socket.join(data.gameID);
           }
           io.to(socket.id).emit('createGame', {isValid: !!game, gameID: data.gameID});
-      
+          console.log(controller.games);
         });
       
         socket.on('leaveGame', () => {

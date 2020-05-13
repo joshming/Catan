@@ -3,15 +3,15 @@ var http = require('http');
 var path = require('path');
 var socketIO = require('socket.io');
 
-const {ServerController} = require("./lib/server/serverController.js");
+const {ServerController} = require("./server/serverController.js");
 
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
 
-app.use('/client.js', express.static(__dirname + '/client.js'));
+app.use('/', express.static(__dirname + '/client'));
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;

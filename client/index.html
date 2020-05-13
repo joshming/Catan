@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="style.css">
         <script src="/socket.io/socket.io.js"></script>
+        <script>src="sockets.js"</script>
         <script src="script.js"></script>
     </head>
     <body class="fade-in">
@@ -27,22 +28,25 @@
                 </div>
             </div>
             <div class="Join-Game-container" id='join'>
-                <form onsubmit="completeAndRedirect(); return false;" class="join-form" id="join-form">
+                <form action="#" class="join-form" id="join-form" name="join-game">
                     <h1 id="joingame">Join Game</h1>
-                    <input type="Name" placeholder="Game Name">
-                    <input type="Password" placeholder="Password">
-                    <input type="Name" placeholder="Username">
-                    <button class="inform">Join Game</button>
+                    <input type="Name" placeholder="Game Name" name="game name">
+                    <input type="Password" placeholder="Password" name="pass">
+                    <input type="Name" placeholder="Username" name="user">
+                    <button class="inform" onclick="validateJoin()">Join Game</button>
                 </form>
             </div>
             <div class="New-Game-container">
-                <form action="#" class="new-game-form">
+                <form action="#" class="new-game-form" name="new-game">
                     <h1 id="CreateGame">New Game</h1>
-                    <input type="Name" placeholder="Username">
-                    <input type="Name" placeholder="Game Name">
-                    <input type="Password" placeholder="Password">
-                    <button class="inform">Create Game</button>
+                    <input type="Name" placeholder="Username" name="user">
+                    <input type="Name" placeholder="Game Name" name="game name">
+                    <input type="Password" placeholder="Password" name="pass">
+                    <button class="inform joingamebutton" onclick="validateForm()">Create Game</button>
                 </form>
+            </div>
+            <div class="lobby-container" id="lobby">
+                
             </div>
         </div>
     </body>    

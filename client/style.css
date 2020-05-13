@@ -208,6 +208,7 @@ button.inform {
   letter-spacing: 1px;
   padding: 12px 24px;
   transition: transfrom 60ms ease-in;
+  margin: 5px;
 }
 
 .overlay-panel button {
@@ -264,6 +265,7 @@ button.ghost {
   letter-spacing: 1px;
   transition: transfrom 80ms ease-in;
 }
+
 
 button:active {
   transform: scale(0.95);

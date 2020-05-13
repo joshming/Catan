@@ -146,7 +146,7 @@ body {
   position: absolute;
   top: 0;
   height: 100%;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.3s ease-in-out;
   left: 0;
   width: 50%;
   z-index: 2;
@@ -161,7 +161,7 @@ body {
   position: absolute;
   top: 0;
   height: 100%;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   justify-content: center;
   text-align: center;
 }
@@ -197,7 +197,7 @@ body {
   width: 50%;
   height: 100%;
   overflow: hidden;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   z-index: 100;
 }
 
@@ -229,7 +229,7 @@ button.inform {
   height: 100%;
   width: 200%;
   transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .overlay-panel { 
@@ -244,7 +244,7 @@ button.inform {
   text-align: center;
   width: 50%;
   transform: translateX(0); 
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .overlay-right { 

@@ -1,14 +1,15 @@
 const {Game} = require("./game.js");
 
-class ServerController{
-    constructor(io){
+class GameManager{
+    constructor(){
         this.games = []; //an array of all active games
-        this.io = io; //reference to top-level socket object
     }
 
     createGame(gameID){
         //creates a game and returns its gameID
         var game = this.getGame();
+        if(!game)
+            return false;
 
         this.games.push(new Game(gameID));
         return gameID;
@@ -32,4 +33,4 @@ class ServerController{
 
 }
 
-module.exports = {ServerController};
+module.exports = {GameManager};

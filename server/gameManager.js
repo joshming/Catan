@@ -1,4 +1,4 @@
-const {Game} = require("./game.js");
+const {Game} = require("./models/game.js");
 
 class GameManager{
     constructor(){
@@ -7,8 +7,8 @@ class GameManager{
 
     createGame(gameID){
         //creates a game and returns its gameID
-        var game = this.getGame();
-        if(!game)
+        var game = this.getGame(gameID);
+        if(game)
             return false;
 
         this.games.push(new Game(gameID));
@@ -25,7 +25,7 @@ class GameManager{
     getGame(gameID){
         //returns the game with uuid, or false otherwise
         for(var i = 0; i < this.games.length; i++){
-            if(this.games[i].uuid = gameID)
+            if(this.games[i].uuid == gameID)
                 return this.games[i];
         }
         return false;

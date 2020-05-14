@@ -282,10 +282,20 @@ button:focus{
   display: flex;
   flex-direction: column;
   z-index: 0; 
+  opacity: 0;
+}
+
+.lobby-container button { 
+  opacity: 0;
 }
 
 .lobby-container.active { 
-  z-index: 100;
+  z-index: 101;
+  opacity: 1;
+}
+
+.lobby-container.active button { 
+  opacity: 1;
 }
 
 

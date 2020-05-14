@@ -8,10 +8,6 @@ function shownewgame(){
     container.classList.add('right-active');
 }
 
-function completeAndRedirect(){
-
-}
-
 function validateJoin(){
     var valid = true
     var form_user = document.forms["join-game"]["user"].value 
@@ -32,7 +28,7 @@ function validateForm(){
     var form_pass = document.forms["new-game"]["pass"].value 
 
     if(!(form_user == "" || form_game == "" || form_pass == "")){
-        
+        valid = true
     }
 
     else{

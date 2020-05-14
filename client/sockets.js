@@ -1,8 +1,15 @@
 var socket = io();
 
-function isValidGame(gameID){
+socket.on('debug', (data) => {
+    //a simple debug function
+    console.log(data);
+});
+
+//LOGIN EVENTS
+
+function isValidGameID(gameID){
     //query the sever on if gameID is available
-    socket.emit('isValidGane', {gameID: gameID});
+    socket.emit('isValidGameID', {gameID: gameID});
 }
 
 socket.on('isValidGameID', data => {
@@ -11,6 +18,32 @@ socket.on('isValidGameID', data => {
     console.log(data);
 });
 
+function createGame(gameID, password){
+    //ask to create a game with gameID and password
+    socket.emit('createGame', {gameID: gameID, password: password});
+}
+
 socket.on('createGame', data => {
     console.log(data);
 });
+
+//LOBBY EVENTS
+
+function getGameMembers(){
+    //get the members of the same game that this player is in
+    socket.emit('getGameMembers');
+}
+
+socket.on('getGameMembers', data => {
+    //data = {members: List[str]}
+    //data.members possibly being empty if this call is invalid
+    console.log(data);
+})
+
+//GAME EVENTS
+
+function leaveGame(){
+    //makes a request to leave this player's current game.
+    //does not get a response!
+    socket.emit('leaveGame');
+}

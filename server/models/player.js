@@ -1,6 +1,6 @@
 class Player{
-    constructor(uuid){
-        this.uuid = uuid;
+    constructor(playerID){
+        this.playerID = playerID;
         this.victoryPoints = 0; //int describing number of victory points this player has
         this.cards = []; //array of resource cards
     }

@@ -22,8 +22,7 @@ function validateJoin(){
         alert("One or more of the fields are blank...idiot")
         valid = false
     }
-
-       
+ 
 }
 
 function validateForm(){
@@ -33,9 +32,7 @@ function validateForm(){
     var form_pass = document.forms["new-game"]["pass"].value 
 
     if(!(form_user == "" || form_game == "" || form_pass == "")){
-        if(isValidGame(form_game)){ 
-            valid = true
-        }
+        
     }
 
     else{

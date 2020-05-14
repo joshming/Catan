@@ -1,5 +1,3 @@
-const socket = io();
-
 function showjoinform(){
     var container = document.getElementById('container');
     container.classList.remove('right-active');
@@ -23,8 +21,7 @@ function validateJoin(){
     if(form_user == "" || form_game == "" || form_pass == ""){
         valid = false
     }
-
-       
+ 
 }
 
 function validateForm(){
@@ -34,7 +31,7 @@ function validateForm(){
     var form_pass = document.forms["new-game"]["pass"].value 
 
     if(!(form_user == "" || form_game == "" || form_pass == "")){
-        if 
+        
     }
 
     else{

@@ -5,3 +5,5 @@ class Player{
         this.cards = []; //array of resource cards
     }
 }
+
+module.exports = {Player}

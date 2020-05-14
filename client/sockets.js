@@ -18,12 +18,21 @@ socket.on('isValidGameID', data => {
     console.log(data);
 });
 
-function createGame(gameID, password){
-    //ask to create a game with gameID and password
-    socket.emit('createGame', {gameID: gameID, password: password});
+function createGame(gameID, userID, password){
+    //ask to create a game with gameID under userID
+    socket.emit('createGame', {gameID: gameID, userID: userID, password: password});
 }
 
 socket.on('createGame', data => {
+    console.log(data);
+});
+
+function joinGame(gameID, userID, password){
+    //ask to join a game with gameID under userID
+    socket.emit('joinGame', {gameID: gameID, userID: userID, password: password});
+}
+
+socket.on('joinGame', data => {
     console.log(data);
 });
 

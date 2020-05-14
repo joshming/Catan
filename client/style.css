@@ -275,6 +275,20 @@ button:focus{
   outline: none;
 }
 
+/*  lobby */
+
+.lobby-container { 
+  background: white;
+  display: flex;
+  flex-direction: column;
+  z-index: 0; 
+}
+
+.lobby-container.active { 
+  z-index: 100;
+}
+
+
 /* Animations */
 
 /* Move join game form to the right */

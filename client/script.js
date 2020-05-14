@@ -1,5 +1,3 @@
-const socket = io();
-
 function showjoinform(){
     var container = document.getElementById('container');
     container.classList.remove('right-active');
@@ -21,6 +19,7 @@ function validateJoin(){
     var form_pass = document.forms["join-game"]["pass"].value 
 
     if(form_user == "" || form_game == "" || form_pass == ""){
+        alert("One or more of the fields are blank...idiot")
         valid = false
     }
 
@@ -34,14 +33,16 @@ function validateForm(){
     var form_pass = document.forms["new-game"]["pass"].value 
 
     if(!(form_user == "" || form_game == "" || form_pass == "")){
-        if 
+        if(isValidGame(form_game)){ 
+            valid = true
+        }
     }
 
     else{
-        alert("One or more of the fields are blank...idiot")
+        alert("One or more of the fields are blank...idiot");
     }
     if(valid){
-        lobby.classList.add('accepted')
+        lobby.classList.add('accepted');
     }
 }   
 

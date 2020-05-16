@@ -37,7 +37,7 @@
                 </form>
             </div>
             <div class="New-Game-container">
-                <form action="#" class="new-game-form" name="new-game">
+                <form onsubmit="return false" class="new-game-form" name="new-game">
                     <h1 id="CreateGame">New Game</h1>
                     <input type="Name" placeholder="Username" name="user">
                     <input type="Name" placeholder="Game Name" name="game name">
@@ -45,8 +45,23 @@
                     <button class="inform joingamebutton" onclick="validateForm()">Create Game</button>
                 </form>
             </div>
-            <div class="lobby-container" id="lobby">
-                <button class="lobby-button">Start Game</button>
+        </div>
+        <div class="lobby-container" id="lobby">
+            <div class="lobby-titles">
+                <h1 class="waiting" id="Waiting">Waiting for players to join...</h1>
+                <h2 class="" id="starting">Waiting to begin...</h2>
+            </div>
+            <div class="players" id="players">
+                <p id="first-player"><img src="Images/profile-image.jpg" alt="">Player 1</p>
+                <p><img src="Images/profile-image.jpg" alt="">Waiting for player 2...</p>
+                <p><img src="Images/profile-image.jpg" alt="">Waiting for player 3...</p>
+                <p><img src="Images/profile-image.jpg" alt="">Waiting for player 4...</p>
+                <p><img src="Images/profile-image.jpg" alt="">Waiting for player 5...</p>
+                <p><img src="Images/profile-image.jpg" alt="">Waiting for player 6...</p>
+            </div>
+            <div class="lobby-buttons">
+                <button class="lobby-leave actions" onclick="location.href='index.html'">Leave Lobby</button>
+                <button class="lobby-button actions" id="start-button" onclick="location.href='board.html';">Start Game</button>
             </div>
         </div>
     </body>    

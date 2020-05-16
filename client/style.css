@@ -75,6 +75,7 @@
   min-width: 100%;
   min-height: 100%;
   filter: blur(4.25px);
+  overflow: none;
 }
 
 body {
@@ -266,7 +267,6 @@ button.ghost {
   transition: transfrom 80ms ease-in;
 }
 
-
 button:active {
   transform: scale(0.95);
 }
@@ -275,29 +275,104 @@ button:focus{
   outline: none;
 }
 
+button:hover { 
+  filter: brightness(85%);
+}
+
 /*  lobby */
+
+.container.accepted { 
+  display: none;
+}
 
 .lobby-container { 
   background: white;
+  z-index: -1; 
+  opacity: 0;
+  width: 830px;
+  max-width: 100%;
+  min-height: 560px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.lobby-button.display { 
+  display: flex;
+  opacity: 0;
+  text-align: center;
+}
+
+.lobby-container.accepted { 
+  z-index: 121;
+  opacity: 1;
   display: flex;
   flex-direction: column;
-  z-index: 0; 
-  opacity: 0;
+  border-radius: 20px;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
 }
 
-.lobby-container button { 
-  opacity: 0;
+.lobby-buttons { 
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
 }
 
-.lobby-container.active { 
-  z-index: 101;
+.actions { 
   opacity: 1;
+  border: 1px solid #FFDD9E;
+  border-radius: 30px;
+  background: #FFDD9E;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  transition: transfrom 60ms ease-in;
+  margin: 20px 10px;
+  font-family: Raleway;
+  font-weight: bold;
+  display: inline-block;
+  width: 20%;
 }
 
-.lobby-container.active button { 
-  opacity: 1;
+.lobby-container.accepted h2 { 
+  display: none
 }
 
+.starting h2 { 
+  display: flex;
+  font-family: Satisfy;
+  font-weight: bold;
+  font-size: 60px;
+  padding: 0 20px;
+  color: black;
+}
+
+#Waiting {
+  display: flex;
+  font-family: Satisfy;
+  font-weight: bold;
+  font-size: 50px;
+  padding: 0 10px;
+  color: black;
+} 
+
+.players p{ 
+  border-bottom: 2px solid lightgray;
+  margin: 10px;
+  font-family: Raleway;
+}
+
+.players p img { 
+  padding-right: 10px;
+}
+
+.players img { 
+  width: 10%;
+  height: 10%;
+}
 
 /* Animations */
 
@@ -334,3 +409,5 @@ button:focus{
 .container.right-active .overlay-right { 
   transform: translateX(20%);
 }
+
+/* end of main screen animations */

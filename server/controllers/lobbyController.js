@@ -21,6 +21,20 @@ module.exports = function(io, GM){
             var gameID = GM.leaveGame();
             socket.leave(gameID);
         });
+
+        socket.on('startGame', () => {
+            var gameID;
+            var rooms = Object.keys(socket.rooms);
+            if(rooms.length == 1)
+                return;
+            else{
+                gameID = rooms[1];
+            }
+            var result = GM.startGame(gameID)
+            if(result){
+                io.to(gameID).emit('startGame');
+            }
+        });
       
     });
 }

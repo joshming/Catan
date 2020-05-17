@@ -38,6 +38,14 @@ class GameManager{
         return false;
     }
 
+    startGame(gameID){
+        var game = this.getGame(gameID)
+        if(game)
+            game.startGame()
+            return true;
+        return false;
+    }
+
     getGame(gameID){
         //returns the game with this gameID, or false otherwise
         var gameIDs = Object.keys(this.games);

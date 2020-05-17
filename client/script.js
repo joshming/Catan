@@ -22,6 +22,8 @@ function validateJoin(){
 }
 
 function validateForm(){
+    console.log('validateForm');
+    var lobby = document.getElementById('lobby');
     var valid = false 
     var form_user = document.forms["new-game"]["user"].value 
     var form_game = document.forms["new-game"]["game name"].value
@@ -30,10 +32,10 @@ function validateForm(){
     if(!(form_user == "" || form_game == "" || form_pass == "")){
         valid = true
     }
-
     else{
         alert("One or more of the fields are blank...idiot");
     }
+
     if(valid){
         lobby.classList.add('accepted');
     }

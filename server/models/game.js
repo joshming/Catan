@@ -39,6 +39,10 @@ class Game{
         return members;
     }
 
+    startGame(){
+        this.active = true;
+    }
+
     isPlayerTurn(playerID){
         //return true if is this players turn
         return this.players[this.currentPlayer].id == playerID;

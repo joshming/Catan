@@ -14,7 +14,7 @@ function validateJoin(){
     var form_pass = document.forms["join-game"]["pass"].value;
 
     if(form_user == "" || form_game == "" || form_pass == ""){
-        alert("One or more of the fields are blank...idiot");
+        alert("Field(s) cannot be blank.");
     }
     else{
         joinGame(form_game, form_user, form_pass); 
@@ -29,6 +29,12 @@ function joinGameResult(response){
     }  
     else{
         //DO SOMETHING HERE IF JOIN GAME RESULT IS DENIED
+        if(!response.validUserID){
+            //INVALID USER ID HANDLER HERE
+        }
+        else{
+            //INVALID GAMEID/PASSWORD HANDLER HERE
+        }
     }
 }
 
@@ -42,7 +48,7 @@ function validateForm(){
         createGame(form_game, form_user, form_pass);
     }
     else{
-        alert("One or more of the fields are blank...idiot");
+        alert("Field(s) cannot be blank.");
     }
 
 } 
@@ -56,6 +62,7 @@ function createGameResult(response){
     }
     else{
         //DO SOMETHING HERE IF CREATE GAME REQUEST IS DENIED
+        //THIS USUALLY MEANS GAMEID IS INVALID
     }
 }
 

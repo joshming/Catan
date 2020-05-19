@@ -27,7 +27,7 @@ module.exports = function(io, GM){
         //request to join game, given data.gameID and data.password;
         //data = {gameID: str, userID: str, password: str}
         var result = GM.joinGame(data.gameID, socket.id, data.userID, data.password);
-        io.to(socket.id).emit('joinGame', {gameID: data.gameID, accepted: result});
+        io.to(socket.id).emit('joinGame', {gameID: data.gameID, accepted: result.accepted, validUserID: result.validUserID});
         
       });
       

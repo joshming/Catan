@@ -33,11 +33,12 @@ class GameManager{
                 var result = game.joinGame(userID);
                 if(result){
                     this.players[socketID] = new Player(userID, gameID, false);
+                    return {accepted: true, validUserID: true};
                 }
-                return result;
+                return {accepted: true, validUserID: false};
             }
         }
-        return false;
+        return {accepted: false, validUserID: false};
     }
 
     leaveGame(socketID){

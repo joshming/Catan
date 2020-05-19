@@ -35,7 +35,7 @@ function joinGame(gameID, userID, password){
 }
 
 socket.on('joinGame', data => {
-    //data = {gameID: str, accepted: bool}
+    //data = {gameID: str, accepted: bool, validUserID: bool}
     console.log(data);
     joinGameResult(data);
 });

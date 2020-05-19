@@ -24,7 +24,9 @@ function createGame(gameID, userID, password){
 }
 
 socket.on('createGame', data => {
+    //data = {accepted: bool, gameID: str}
     console.log(data);
+    createGameResult(data);
 });
 
 function joinGame(gameID, userID, password){
@@ -33,7 +35,9 @@ function joinGame(gameID, userID, password){
 }
 
 socket.on('joinGame', data => {
+    //data = {gameID: str, accepted: bool}
     console.log(data);
+    joinGameResult(data);
 });
 
 //LOBBY EVENTS

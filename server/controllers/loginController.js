@@ -20,7 +20,7 @@ module.exports = function(io, GM){
         if(game){
           socket.join(data.gameID);
         }
-        io.to(socket.id).emit('createGame', {isValid: !!game, gameID: data.gameID});
+        io.to(socket.id).emit('createGame', {gameID: data.gameID, accepted: !!game});
       });
     
       socket.on('joinGame', (data) => {

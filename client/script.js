@@ -1,5 +1,3 @@
-var creator = false;
-
 function showjoinform(){
     var container = document.getElementById('container');
     container.classList.remove('right-active');
@@ -11,56 +9,59 @@ function shownewgame(){
 }
 
 function validateJoin(){
-    var valid = true
-    var lobby = document.getElementById('lobby');
-    var form_user = document.forms["join-game"]["user"].value 
-    var form_game = document.forms["join-game"]["game name"].value
-    var form_pass = document.forms["join-game"]["pass"].value 
+    var form_user = document.forms["join-game"]["user"].value;
+    var form_game = document.forms["join-game"]["game name"].value;
+    var form_pass = document.forms["join-game"]["pass"].value;
 
     if(form_user == "" || form_game == "" || form_pass == ""){
-        alert("One or more of the fields are blank...idiot")
-        valid = false
+        alert("One or more of the fields are blank...idiot");
     }
     else{
-        joinGame(form_game, form_user, form_pass);
-        // if this passes, add the class 
-        if(valid){
-            lobby.classList.add('accepted');
-            container.classList.add('accepted');
-        }   
+        joinGame(form_game, form_user, form_pass); 
+    }
+}
+
+function joinGameResult(response){
+    if(response.accepted){
+        var lobby = document.getElementById('lobby');
+        lobby.classList.add('accepted');
+        container.classList.add('accepted');
+    }  
+    else{
+        //DO SOMETHING HERE IF JOIN GAME RESULT IS DENIED
     }
 }
 
 function validateForm(){
-    var lobby = document.getElementById('lobby');
-    var container = document.getElementById('container');
-    var valid = false;
+
     var form_user = document.forms["new-game"]["user"].value;
     var form_game = document.forms["new-game"]["game name"].value;
     var form_pass = document.forms["new-game"]["pass"].value;
-    var p1 = document.getElementById('first-player');
-
 
     if(!(form_user == "" || form_game == "" || form_pass == "")){
-        valid = true;
+        createGame(form_game, form_user, form_pass);
     }
     else{
         alert("One or more of the fields are blank...idiot");
     }
 
-    if(valid){
+} 
+
+function createGameResult(response){
+    if(response.accepted){
+        var lobby = document.getElementById('lobby');
+        var container = document.getElementById('container');
         lobby.classList.add('accepted');
         container.classList.add('accepted');
-        creator = true;
-        // displayButton();
-        // p1.innerHTML = 'You';
     }
-
-}   
+    else{
+        //DO SOMETHING HERE IF CREATE GAME REQUEST IS DENIED
+    }
+}
 
 function displayButton(){ 
     var button = document.getElementById('start-button')
     if(creator){ 
-        button.classList.add('display')
+        button.classList.add('display');
     }
 }

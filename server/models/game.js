@@ -4,7 +4,7 @@ const {Player} = require("./player.js");
 class Game{
     constructor(gameID, creatorID){
         this.gameID = gameID; //identifying token for this game
-        this.players = [new Player(creatorID)]; //a list of players
+        this.players = [new Player(creatorID, gameID, true)]; //a list of players
         this.currentPlayer = 0; //index of the player who has the current turn
         this.active = false; //true if this game is started
         
@@ -14,21 +14,21 @@ class Game{
 
     //PREGAME FUNCTIONS
 
-    joinGame(playerID){
+    joinGame(userID){
         //returns true if this player can be added to this game
         for(var i = 0; i < this.players.length; i++){
-            if(this.players[i].playerID == playerID)
+            if(this.players[i].userID == userID)
                 return false;
         }
-        this.players.push(new Player(playerID));
+        this.players.push(new Player(userID));
         return true;
     }
 
-    leaveGame(playerID){
+    leaveGame(userID){
         //remove player from this game
         for(var i = 0; i < this.players.length; i++){
             var temp = this.players[i];
-            if(temp.playerID == playerID){
+            if(temp.userID == userID){
                 this.players.pop(i);
             }
         }

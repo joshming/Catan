@@ -1,4 +1,4 @@
-const {ResponseSender} = require('./controllers/responseController.js');
+const {ResponseSender} = require('./controllers/responseSender.js');
 const {Game} = require("./models/game.js");
 const {Player} = require("./models/player.js");
 
@@ -31,7 +31,9 @@ class GameManager{
         if(game){
             if(this.auth[gameID] === password){
                 var result = game.joinGame(userID);
-                this.players[socketID] = new Player(userID, gameID, false);
+                if(result){
+                    this.players[socketID] = new Player(userID, gameID, false);
+                }
                 return result;
             }
         }

@@ -56,3 +56,7 @@ function leaveGame(){
     //does not get a response!
     socket.emit('leaveGame');
 }
+
+socket.on('getGameState', data => {
+    //recieve a game state update from the server
+});

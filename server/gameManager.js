@@ -1,12 +1,18 @@
+const {ResponseSender} = require('./controllers/responseController.js');
 const {Game} = require("./models/game.js");
+const {Player} = require("./models/player.js");
 
 class GameManager{
-    constructor(){
+    constructor(io){
+        this.res = new ResponseSender(io);
         this.games = {}; //a dict mapping gameID to the game object
+        this.players = {}; //a dict mapping socketID to player object
         this.auth = {}; //a dict mapping gameID to passwords
     }
 
-    createGame(gameID, userID, password){
+    //GAME MANAGEMENT FUNCTIONS
+
+    createGame(gameID, socketID, userID, password){
         //creates a game and returns its gameID, or false if gameID is taken
         var game = this.getGame(gameID);
         if(game)
@@ -14,52 +20,91 @@ class GameManager{
             return false;
 
         this.games[gameID] = new Game(gameID, userID);
+        this.players[socketID] = new Player(userID, gameID, true);
         this.auth[gameID] = password;
         return gameID;
     }
 
-    joinGame(gameID, userID, password){
+    joinGame(gameID, socketID, userID, password){
         //returns true if userID joined the game with this gameID
         var game = this.getGame(gameID);
         if(game){
             if(this.auth[gameID] === password){
                 var result = game.joinGame(userID);
+                this.players[socketID] = new Player(userID, gameID, false);
                 return result;
             }
         }
         return false;
     }
 
-    leaveGame(gameID, userID){
+    leaveGame(socketID){
+        //return gameID that this player left, otherwise return false
+        var player = this.getPlayer(socketID);
+        if(!player)
+            return false;
+
+        var gameID = player.gameID;
         var game = this.getGame(gameID)
         if(game){
             game.leaveGame(userID);
+            return gameID;
         }
         return false;
     }
 
-    startGame(gameID){
-        var game = this.getGame(gameID)
-        if(game)
-            game.startGame()
-            return true;
+    startGame(socketID){
+        var player = this.getPlayer(socketID);
+        if(player){
+            if(player.isAdmin){
+                var game = this.getGame(gameID)
+                if(game){
+                    game.startGame();
+                    return true;
+                }
+            }
+        }
         return false;
     }
+
+    //PROCESS INPUT FUNCTIONS
+
+    requestAction(socketID, actionName, data){
+        //relay a requested action to the appropriate game
+        var player = this.getPlayer(socketID)
+        if(player){
+            var game = this.getGame(player.gameID)
+            if(game){
+                game.requestAction(player.userID, actionName, data);
+            }
+        }
+    }
+
+    //GETTER FUNCTIONS
 
     getGame(gameID){
         //returns the game with this gameID, or false otherwise
-        var gameIDs = Object.keys(this.games);
-        for(var i = 0; i < gameIDs.length; i++){
-            if(gameIDs[i] == gameID)
-                return this.games[gameID];
-        }
-        return false;
+        var game = this.games[gameID]
+        if(game == null)
+            return false;
+        return game;
     }
 
-    getGameMembers(gameID){
-        var game = this.getGame(gameID);
-        if(game){
-            return game.getGameMembers();
+    getPlayer(socketID){
+        //returns the player object associated with this socketID, or false otherwise
+        if(this.players[socketID] == null)
+            return false;
+        return this.players[socketID];
+    }
+
+    getGameMembers(socketID){
+        //get a list of players in this player's game
+        var player = this.getPlayer(socketID)
+        if(player){
+            var game = this.getGame(player.gameID);
+            if(game){
+                return game.getGameMembers();
+            }
         }
         return [];
     }

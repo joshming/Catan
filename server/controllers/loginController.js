@@ -16,7 +16,7 @@ module.exports = function(io, GM){
       socket.on('createGame', (data) => {
         //this socket requested to create a game
         //data = {gameID: str, userID: str, password: str}
-        var game = GM.createGame(data.gameID, data.userID, data.password);
+        var game = GM.createGame(data.gameID, socket.id, data.userID, data.password);
         if(game){
           socket.join(data.gameID);
         }
@@ -26,7 +26,7 @@ module.exports = function(io, GM){
       socket.on('joinGame', (data) => {
         //request to join game, given data.gameID and data.password;
         //data = {gameID: str, userID: str, password: str}
-        var result = GM.joinGame(data.gameID, data.userID, data.password);
+        var result = GM.joinGame(data.gameID, socket.id, data.userID, data.password);
         io.to(socket.id).emit('joinGame', {gameID: data.gameID, accepted: result});
         
       });

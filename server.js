@@ -23,7 +23,7 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
 
-var GM = new GameManager();
+var GM = new GameManager(io);
 
 loginController(io, GM);
 lobbyController(io, GM);

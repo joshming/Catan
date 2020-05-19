@@ -9,7 +9,10 @@ class Game{
         this.active = false; //true if this game is started
         
         this.board = new Board() //a representation of the gameboard
+        this.timer; //a setTimout object representing the turn time limit
     }
+
+    //PREGAME FUNCTIONS
 
     joinGame(playerID){
         //returns true if this player can be added to this game
@@ -32,6 +35,7 @@ class Game{
     }
 
     getGameMembers(){
+        //returns a list of the userIDs of all players in this game
         var members = [];
         for(var i = 0; i < this.players.length; i++){
             members.push(this.players[i].userID);
@@ -39,7 +43,16 @@ class Game{
         return members;
     }
 
+    //GAME STATE FUNCTIONS
+
     startGame(){
+        //starts this game
+        this.active = true;
+        this.toggleTimer();
+    }
+
+    endGame(){
+        //ends this game
         this.active = true;
     }
 
@@ -48,8 +61,41 @@ class Game{
         return this.players[this.currentPlayer].id == playerID;
     }
 
-    rollDie(){
+    toggleTimer(){
+        //sets a timer that starts the next player's turn in 5 minutes
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.nextTurn(), 3000);
+    }
 
+    nextTurn(){
+        //starts the next player's turn
+        var nPlayers = this.players.length;
+        if(this.currentPlayer != nPlayers - 1)
+            this.currentPlayer += 1;
+        else
+            this.currentPlayer = 0;
+        this.toggleTimer();
+    }
+
+    checkWin(){
+        //returns userID if that user has won, otherwise return false
+        for(var i = 0; i < this.players.length; i++){
+            if(this.players[i].victoryPoints >= 10)
+                return this.players[i].userID;
+        }
+        return false;
+    }
+
+    //GAME ACTION FUNCTIONS
+
+    action(actionType, userID){
+
+    }
+
+    rollDie(){
+        //returns a list of two integers between 1-6, representing two die rolls
+        const getDie = () => {return Math.floor(Math.random() * 6) + 1};
+        return [getDie(), getDie()];
     }
 
     buyRoad(){

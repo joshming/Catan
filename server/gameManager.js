@@ -74,11 +74,12 @@ class GameManager{
 
     requestAction(socketID, actionName, data){
         //relay a requested action to the appropriate game
-        var player = this.getPlayer(socketID)
+        var player = this.getPlayer(socketID);
         if(player){
-            var game = this.getGame(player.gameID)
+            var game = this.getGame(player.gameID);
             if(game){
-                game.requestAction(player.userID, actionName, data);
+                var result = game.requestAction(player.userID, actionName, data);
+                this.res.send(socketID, actionName, result);
             }
         }
     }

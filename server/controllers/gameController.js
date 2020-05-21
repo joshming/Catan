@@ -11,16 +11,19 @@ module.exports = function(io, GM){
         socket.on('buyRoad', (data) => {
             //request to buy a road at this edge
             //data = {i: int, j: int, edge: int}
+            GM.requestAction(socket.id, 'buyRoad', data);
         });
 
         socket.on('buySettlement', (data) => {
             //request to buy a settlement at this corner
             //data = {i: int, j: int, corner: int}
+            GM.requestAction(socket.id, 'buySettlement', data);
         })
 
         socket.on('buyCity', (data) => {
             //request to buy a settlement at this corner
             //data = {i: int, j: int, corner: int}
+            GM.requestAction(socket.id, 'buyCity', data);
         });
 
         socket.on('requestTrade', (data) => {
@@ -30,6 +33,12 @@ module.exports = function(io, GM){
             //     offer: {grain: int, lumber: int, wool: int, ore: int, brick: int}, 
             //     recieve: {grain: int, lumber: int, wool: int, ore: int, brick: int}
             // }
+            GM.requestAction(socket.id, 'requestTrade', data);
+        });
+
+        socket.on('endTurn', () => {
+            //request to end this player's turn
+            GM.requestAction(socket.id, 'endTurn', data);
         });
  
     });

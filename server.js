@@ -14,6 +14,8 @@ var server = http.Server(app);
 var io = socketIO(server);
 
 app.use('/', express.static(__dirname + '/client'));
+app.use('/', express.static(__dirname + '/shared'));
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/client/index.html'));
 });

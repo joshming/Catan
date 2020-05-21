@@ -9,6 +9,10 @@ class ResponseSender{
         this.io.to(gameID).emit(gameState);
     }
 
+    send(socketID, actionName, data){
+        this.io.to(socketID).emit(actionName, data);
+    }
+
 }
 
 module.exports = {ResponseSender};

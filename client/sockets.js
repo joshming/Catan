@@ -64,3 +64,54 @@ function leaveGame(){
 socket.on('getGameState', data => {
     //recieve a game state update from the server
 });
+
+function buyRoad(i, j, edge){
+    //request to buy a road on the i, j hex
+    socket.emit('buyRoad', {i: i, j: j, edge: edge});
+}
+
+socket.on('buyRoad', (data) => {
+    //request to buy a road at this edge
+    //data = {i: int, j: int, edge: int}
+});
+
+function buySettlement(i, j, corner){
+    //request to buy a settlement on the i, j hex
+    socket.emit('buySettlement', {i: i, j: j, corner: corner});
+}
+
+socket.on('buySettlement', (data) => {
+    //request to buy a settlement at this corner
+    //data = {i: int, j: int, corner: int}
+});
+
+function buyCity(i, j, corner){
+    //request to upgrade a settlement to a city on the i, j hex
+    socket.emit('buyCity', {i: i, j: j, corner: corner});
+}
+
+socket.on('buyCity', (data) => {
+    //request to buy a settlement at this corner
+    //data = {i: int, j: int, corner: int}
+});
+
+function requestTrade(target, offer, recieve){
+    //request a trade, offer for recieve
+    //offer = recieve = {grain: int, lumber: int, wool: int, ore: int, brick: int}
+    //target = playerID, "bank", null
+    socket.emit('requestTrade', {target: target, offer: offer, recieve: recieve});
+}
+
+socket.on('requestTrade', (data) => {
+    // request to trade with bank
+    // data = {
+    //     target: str
+    //     offer: {grain: int, lumber: int, wool: int, ore: int, brick: int}, 
+    //     recieve: {grain: int, lumber: int, wool: int, ore: int, brick: int}
+    // }
+});
+
+function endTurn(){
+    //end this player's turn
+    socket.emit('endTurn');
+}

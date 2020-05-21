@@ -28,12 +28,12 @@ function joinGameResult(response){
         container.classList.add('accepted');
     }  
     else{
-        //DO SOMETHING HERE IF JOIN GAME RESULT IS DENIED
+        alert("Acess to the game was denied")
         if(!response.validUserID){
-            //INVALID USER ID HANDLER HERE
+            alert('Username is not available, please try again.')
         }
         else{
-            //INVALID GAMEID/PASSWORD HANDLER HERE
+            alert('Password and/or game name are incorrect, please try again')
         }
     }
 }
@@ -61,8 +61,7 @@ function createGameResult(response){
         container.classList.add('accepted');
     }
     else{
-        //DO SOMETHING HERE IF CREATE GAME REQUEST IS DENIED
-        //THIS USUALLY MEANS GAMEID IS INVALID
+        alert('Failed to create game. Try a different Game Name')
     }
 }
 

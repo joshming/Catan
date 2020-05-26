@@ -9,6 +9,29 @@ class Board{
         this.generateBoard();
     }
 
+    // SETTERS
+
+    setRoad(userID, i, j, edge){
+        var tile = this.getTile(i, j);
+        if(tile){
+            if(0 <= edge && edge < 6){
+                tile.edges[edge] = userID;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    setSettlement(i, j, corner){
+
+    }
+
+    setCity(i, j, corner){
+
+    }
+
+    // BOARD GENERATION
+
     generateTiles(){
         //returns a shuffled list of all 19 tiles
         var tiles = [];
@@ -136,6 +159,8 @@ class Board{
             tile.edges[x] = this.edges[this.edges.length - 1];
         }
     }
+
+    // HELPERS
 
     getTile(i, j){
         //returns tile if this.board[i][j] is a valid tile, or false otherwise

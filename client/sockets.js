@@ -70,29 +70,23 @@ function buyRoad(i, j, edge){
     socket.emit('buyRoad', {i: i, j: j, edge: edge});
 }
 
-socket.on('buyRoad', (data) => {
-    //request to buy a road at this edge
-    //data = {i: int, j: int, edge: int}
-});
-
 function buySettlement(i, j, corner){
     //request to buy a settlement on the i, j hex
     socket.emit('buySettlement', {i: i, j: j, corner: corner});
 }
-
-socket.on('buySettlement', (data) => {
-    //request to buy a settlement at this corner
-    //data = {i: int, j: int, corner: int}
-});
 
 function buyCity(i, j, corner){
     //request to upgrade a settlement to a city on the i, j hex
     socket.emit('buyCity', {i: i, j: j, corner: corner});
 }
 
-socket.on('buyCity', (data) => {
-    //request to buy a settlement at this corner
-    //data = {i: int, j: int, corner: int}
+function buyDevelopmentCard(){
+    //request to upgrade a settlement to a city on the i, j hex
+    socket.emit('buyCity', {});
+}
+
+socket.on('buyDevelopmentCard', (data) => {
+    //data = {card: DevelopmentCard}
 });
 
 function requestTrade(target, offer, recieve){

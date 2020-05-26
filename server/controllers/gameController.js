@@ -26,6 +26,12 @@ module.exports = function(io, GM){
             GM.requestAction(socket.id, 'buyCity', data);
         });
 
+        socket.on('buyDevelopmentCard', (data) => {
+            //request to buy a development card
+            //data = {}
+            GM.requestAction(socket.id, 'buyDevelopmentCard', data);
+        });
+
         socket.on('requestTrade', (data) => {
             // request to trade with bank
             // data = {

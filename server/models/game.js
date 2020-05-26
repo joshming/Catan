@@ -90,54 +90,92 @@ class Game{
     //GAME ACTION FUNCTIONS
 
     requestAction(userID, actionName, data){
+
+        if(!this.active)
+            return false;
+
         switch(actionName){
-            case "rollDie":
-                return this.rollDie();
             case "buyRoad":
-                return this.buyRoad(userID, data);
+                return this.buyRoad(userID, data.i, data.j, data.edge);
             case "buySettlement":
-                return this.buySettlement(userID, data);
+                return this.buySettlement(userID, data.i, data.j, data.corner);
             case "buyCity":
-                return this.buyCity(userID, data);
+                return this.buyCity(userID, data.i, data.j, data.corner);
             case "buyDevelopmentCard":
-                return this.buyDevelopmentCard(userID, data);
+                return this.buyDevelopmentCard(userID);
             case "requestTrade":
-                return this.requestTrade(userID, data);
+                return this.requestTrade(userID, data.target, data.offer, data.recieve);
         }
     }
 
-    rollDie(){
+    startTurn(){
         //returns a list of two integers between 1-6, representing two die rolls
         const getDie = () => {return Math.floor(Math.random() * 6) + 1};
-        return [getDie(), getDie()];
+        return {die1: getDie(), die2: getDie()};
     }
 
-    buyRoad(userID, data){
+    buyRoad(userID, i, j, edge){
         //Requests to buy road at i, j hex
         //data = {i: int, j: int, edge: int}
         var player = this.getPlayer(userID);
         if(player){
+            var cost = {grain: 1, lumber: 0, wool: 0, ore: 0, brick: 1};
+            if(player.hasCards(cost)){
+                if(this.board.setRoad(userID, i, j, edge)){
+                    player.spendCards(cost);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    buySettlement(userID, i, j, corner){
+        //Requests to buy settlement at i, j hex
+        //data = {i: int, j: int, corner: int}
+        var player = this.getPlayer(userID);
+        if(player){
+            var cost = {grain: 1, lumber: 1, wool: 1, ore: 0, brick: 1};
+            if(player.hasCards(cost)){
+                if(this.board.setSettlement(userID, i, j, edge)){
+                    player.spendCards(cost);
+                    return true;
+                }
+            }
         }
     }
 
-    buySettlement(userID, data){
+    buyCity(userID, i, j, corner){
+        //Requests to update to a city at i, j hex
+        //data = {i: int, j: int, corner: int}
+        var player = this.getPlayer(userID);
+        if(player){
+            var cost = {grain: 2, lumber: 0, wool: 0, ore: 3, brick: 0};
+            if(player.hasCards(cost)){
+                if(this.board.setCity(userID, i, j, edge)){
+                    player.spendCards(cost);
+                    return true;
+                }
+            }
+        }
+    }
+
+    buyDevelopmentCard(userID){
+        //Requests to buy development card
+        var player = this.getPlayer(userID);
+        if(player){
+            var cost = {grain: 1, lumber: 0, wool: 1, ore: 1, brick: 0};
+            if(player.spendCards(cost)){
+
+            }
+        }
+    }
+
+    endTurn(userID){
 
     }
 
-    buyCity(userID, data){
-
-    }
-
-    buyDevelopmentCard(userID, data){
-
-    }
-
-    endTurn(userID, data){
-
-    }
-
-    requestTrade(userID, data){
+    requestTrade(userID, target, offer, recieve){
 
     }
 
@@ -145,13 +183,24 @@ class Game{
         //return an object limited to everything the clients need to know about the game state
     }
 
-    // GETTERS
+    //HELPERS
 
     getPlayer(userID){
         if(this.players[userID] == null)
             return false;
         return this.players[userID]
     }
+
+    addCards(userID, cards){
+        //gives this player these cards
+        //cards = {grain: int, lumber: int, wool: int, ore: int, brick: int}
+    }
+
+    spendCards(userID, cards){
+        //spends these cards, or returns false
+        //cards = {grain: int, lumber: int, wool: int, ore: int, brick: int}
+    }
+
 }
 
 module.exports = {Game};

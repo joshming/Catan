@@ -79,7 +79,9 @@ class GameManager{
             var game = this.getGame(player.gameID);
             if(game){
                 var result = game.requestAction(player.userID, actionName, data);
-                this.res.send(socketID, actionName, result);
+                if(result){
+                    this.res.send(socketID, actionName, result);
+                }
             }
         }
     }

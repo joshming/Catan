@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width,intial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="board-style.css">
-        <canvas id="Board"></canvas>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="board.js"></script>
         <script src="sockets.js"></script>
+        <script src="board.js"></script>
     </head>
-    <body>
+    <body onload="onLoad()">
+        <div class="interface">
+            <canvas id="Board"></canvas>
+            <div class="turn-info">
+                <button class="turn show" id="turn" onclick="turns()">Start Turn</button>
+                <p class="player-turn" id="player-turn">Player__ Turn</p>
+            </div>
+        </div>
     </body>
 </html>

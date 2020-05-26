@@ -1,3 +1,73 @@
+@font-face {
+    src: url(Fonts/Satisfy-Regular.ttf);
+    font-family: Satisfy;
+}
+
+@font-face {
+    src: url(Fonts/RoughStormsBold.ttf);
+    font-family: Rough;
+}
+@font-face{
+  src: url(Fonts/Raleway-Regular.ttf);
+  font-family: Raleway;
+}
+
+@font-face{
+    src: url(Fonts/BebasNeue-Regular.ttf);
+    font-family: Bebas;
+}
+
 body{ 
     background: rgba(255, 230, 120, 0.4);
+}
+
+.interface {
+    display: flex;
+    flex-direction: row;
+}
+
+#turn {
+    position: absolute;
+    padding: 20px;
+    border-radius: 15px;
+    margin-left: 120vh;
+    margin-top: 400px;
+    border: 2px solid;
+    background-color: rgba(246, 133, 92, 0.3);
+    font-family: Bebas;
+    color: white;
+    font-size: 35px;
+    letter-spacing: 3px;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    filter: brightness(85%);
+}
+
+.turn.show {
+    display: inline;
+}
+
+.turn { 
+    display: none;
+}
+
+.player-turn { 
+    opacity: 0; 
+    font-size: 50px;
+    font-family: Bebas;
+    color: rgb(212, 149, 11, 0.4);
+}
+
+.player-turn.show { 
+    opacity: 1;
+}
+
+.turn-info { 
+    position: absolute;
+    justify-content: center;
 }

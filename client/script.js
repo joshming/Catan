@@ -71,3 +71,7 @@ function displayButton(){
         button.classList.add('display');
     }
 }
+
+function btnStartGame(){
+    startGame();
+}

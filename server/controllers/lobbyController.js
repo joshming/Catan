@@ -16,9 +16,10 @@ module.exports = function(io, GM){
         });
 
         socket.on('startGame', () => {
-            var result = GM.startGame(socket.id)
-            if(result){
-                io.to(gameID).emit('startGame');
+            var gameID = GM.startGame(socket.id);
+            if(gameID){
+                io.to(gameID).emit('startGame', {accepted: true});
+                console.log('started game');
             }
         });
       

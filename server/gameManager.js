@@ -57,13 +57,14 @@ class GameManager{
     }
 
     startGame(socketID){
+        //returns gameID if startGame request is valid, otherwise false
         var player = this.getPlayer(socketID);
         if(player){
             if(player.isAdmin){
-                var game = this.getGame(gameID)
+                var game = this.getGame(player.gameID);
                 if(game){
                     game.startGame();
-                    return true;
+                    return player.gameID;
                 }
             }
         }
@@ -78,9 +79,15 @@ class GameManager{
         if(player){
             var game = this.getGame(player.gameID);
             if(game){
+
                 var result = game.requestAction(player.userID, actionName, data);
+                var target = socketID;
+
+                if(actionName == "endTurn")
+                    target = game.gameID;
+
                 if(result){
-                    this.res.send(socketID, actionName, result);
+                    this.res.send(target, actionName, result);
                 }
             }
         }

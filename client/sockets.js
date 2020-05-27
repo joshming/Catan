@@ -45,13 +45,25 @@ socket.on('joinGame', data => {
 function getGameMembers(){
     //get the members of the same game that this player is in
     socket.emit('getGameMembers');
-}
+};
 
 socket.on('getGameMembers', data => {
     //data = {members: List[str]}
     //data.members possibly being empty if this call is invalid
     console.log(data);
-})
+});
+
+function startGame(){
+    //make an attempt to start this game
+    socket.emit('startGame');
+};
+
+socket.on('startGame', data => {
+    //data = {accepted: bool}
+    if(data.accepted){
+        location.href='board.html';
+    }
+});
 
 //GAME EVENTS
 

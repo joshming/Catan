@@ -1,19 +1,13 @@
-const {Board} = require("./board.js");
-const {Player} = require("./player.js");
+class LocalGame{
 
-class Game{
+    constructor(playerIDs, boardData){
 
-    constructor(gameID, creatorID){
-
-        this.gameID = gameID; //identifying token for this game
         this.players = {}; //object mapping userID to Player object
-        this.players[creatorID] = new Player(creatorID, gameID, true); //instantiate the master player
+        for(var i = 0; i < playerIDs.length; i++){
+            this.players[playerIDs[i]] = new LocalPlayer(playerIDs[i]);
+        }
 
-        this.currentPlayer = 0; //index of the player who has the current turn
-        this.active = false; //true if this game is started
-        
-        this.board = new Board() //a representation of the gameboard
-        this.timer; //a setTimout object representing the turn time limit
+        this.board = new Board(boardData) //a representation of the gameboard
 
     }
 
@@ -59,49 +53,11 @@ class Game{
         //TO BE IMPLEMENTED
     }
 
-    toggleTimer(){
-        //sets a timer that starts the next player's turn in 5 minutes
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.nextTurn(), 3000);
-    }
-
-    checkWin(){
-        //returns userID if that user has won, otherwise return false
-        for(var prop in this.players){
-            if(this.players[prop].victoryPoints >= 10)
-                return this.players[prop].userID;
-        }
-        return false;
+    endTurn(){
+        //end this player's turn. To be implemented
     }
 
     //GAME ACTION FUNCTIONS
-
-    requestAction(userID, actionName, data){
-
-        if(!this.active)
-            return false;
-
-        switch(actionName){
-            case "buyRoad":
-                return this.buyRoad(userID, data.i, data.j, data.edge);
-            case "buySettlement":
-                return this.buySettlement(userID, data.i, data.j, data.corner);
-            case "buyCity":
-                return this.buyCity(userID, data.i, data.j, data.corner);
-            case "buyDevelopmentCard":
-                return this.buyDevelopmentCard(userID);
-            case "requestTrade":
-                return this.requestTrade(userID, data.target, data.offer, data.recieve);
-            case "endTurn":
-                return this.nextTurn();
-        }
-    }
-
-    nextTurn(){
-        //returns a list of two integers between 1-6, representing two die rolls
-        const getDie = () => {return Math.floor(Math.random() * 6) + 1};
-        return {gameState: this.export(), die1: getDie(), die2: getDie()};
-    }
 
     buyRoad(userID, i, j, edge){
         //Requests to buy road at i, j hex

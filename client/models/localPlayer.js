@@ -1,11 +1,10 @@
-class Player{
-    constructor(userID, gameID, isAdmin){
-        this.userID = userID;
-        this.gameID = gameID;
-        this.isAdmin = isAdmin;
-        this.victoryPoints = 0; //int describing number of victory points this player has
-        this.cards = {grain: 0, lumber: 0, wool: 0, ore: 0, brick: 0}; //array of resource cards
-        this.developmentCards = {knight: 0, victoryPoint: 0, roadBuilding: 0, yearOfPlenty: 0, monopoly: 0} //development cards
+class LocalPlayer{
+    constructor(playerID, isClient){
+        this.playerID = playerID;
+        this.isClient = isClient;
+        this.victoryPoints = 0;
+        this.cards = {grain: 0, lumber: 0, wool: 0, ore: 0, brick: 0, unknown: 0}; //resource cards
+        this.developmentCards = {knight: 0, victoryPoint: 0, roadBuilding: 0, yearOfPlenty: 0, monopoly: 0, unknown: 0} //development cards
     }
 
     hasCards(cards){
@@ -37,6 +36,5 @@ class Player{
             this.cards[prop] -= cards[prop];
         }
     }
+    
 }
-
-module.exports = {Player}
